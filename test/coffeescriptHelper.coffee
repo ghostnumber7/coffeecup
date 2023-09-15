@@ -17,9 +17,9 @@ var __indexOf = Array.prototype.indexOf || function(item) {
     if (this[i] === item) return i;
   } return -1; };
     """.replace /\n/g, ''
-    it "should render <script>#{coffeescript_helper}(function () {\n return alert('hi');\n }).call(this);</script>", ->
+    it "should render <script>#{coffeescript_helper}(function() {\n return alert('hi');\n }).call(this);</script>", ->
       h = -> coffeescript -> alert 'hi'
-      assert.equal cc.render(h), "<script>#{coffeescript_helper}(function () {\n            return alert('hi');\n          }).call(this);</script>"
+      assert.equal cc.render(h), "<script>#{coffeescript_helper}(function() {\n            return alert('hi');\n          }).call(this);</script>"
 
 describe 'CoffeeScript helper (string)', ->
   describe 'coffeescript "alert \'hi\'\"',  ->
@@ -49,9 +49,9 @@ var __indexOf = Array.prototype.indexOf || function(item) {
     if (this[i] === item) return i;
   } return -1; };
     """.replace /\n/g, ''
-    it "should render <script>#{coffeescript_helper}(function () {\n return alert('hi');\n }).call(this);</script>", ->
+    it "should render <script>#{coffeescript_helper}(function() {\n return alert('hi');\n }).call(this);</script>", ->
       h = -> coffeescript -> alert 'hi'
-      assert.equal cc.render(h, optimized: true), "<script>#{coffeescript_helper}(function () {\n            return alert('hi');\n          }).call(this);</script>"
+      assert.equal cc.render(h, optimized: true), "<script>#{coffeescript_helper}(function() {\n            return alert('hi');\n          }).call(this);</script>"
 
 describe 'CoffeeScript helper (string) optimized', ->
   describe 'coffeescript "alert \'hi\'\"',  ->
