@@ -200,7 +200,7 @@ skeleton = (data = {}) ->
       text "<#{name}"
       @render_idclass(idclass) if idclass
       @render_attrs(attrs) if attrs
-      
+
       text " #{inline}" if inline
 
       if name in @self_closing
@@ -286,16 +286,6 @@ skeleton = (data = {}) ->
       when 'object'
         param.type = 'text/coffeescript'
         script param
-
-  stylus = (s) ->
-    throw new TemplateError('stylus is not available') unless data.stylus?
-    text '<style>'
-    text '\n' if data.format
-    data.stylus.render s, {compress: not data.format}, (err, css) ->
-      if err then throw err
-      text css
-    text '</style>'
-    text '\n' if data.format
 
   # Conditional IE comments.
   ie = (condition, contents) ->
@@ -386,9 +376,6 @@ coffeecup.render = (template, data = {}, options = {}) ->
   data[k] = v for k, v of options
   data.cache ?= off
 
-  if not window?
-    data.stylus = require 'stylus'
-
   # Do not optimize templates if the cache is disabled, as it will slow
   # everything down considerably.
   if data.optimize and not data.cache then data.optimize = no
@@ -400,7 +387,6 @@ coffeecup.render = (template, data = {}, options = {}) ->
 
 unless window?
   coffeecup.__express = (path, options = {}, fn) ->
-    options.stylus = require 'stylus'
     if options.optimize and not options.cache then options.optimize = no
 
     render = (tpl) ->

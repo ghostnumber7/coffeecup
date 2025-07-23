@@ -21,30 +21,23 @@ Here's what a template written for CoffeeCup looks like:
         meta charset: 'utf-8'
         title "#{@title or 'Untitled'} | A completely plausible website"
         meta(name: 'description', content: @description) if @description?
-        
+
         link rel: 'stylesheet', href: '/css/app.css'
-        
+
         style '''
           body {font-family: sans-serif}
           header, nav, section, footer {display: block}
         '''
 
-        comment 'Stylus is supported as well'
-
-        stylus '''
-          body
-            margin: 0
-        '''
-                 
         script src: '/js/jquery.js'
-        
+
         coffeescript ->
           $(document).ready ->
             alert 'Alerts suck!'
       body ->
         header ->
           h1 @title or 'Untitled'
-          
+
           nav ->
             ul ->
               (li -> a href: '/', -> 'Home') unless @path is '/'
@@ -63,10 +56,10 @@ Here's what a template written for CoffeeCup looks like:
         section ->
           # A helper function you built and included.
           breadcrumb separator: '>', clickable: yes
-          
+
           h2 "Let's count to 10:"
           p i for i in [1..10]
-          
+
           # Another hypothetical helper.
           form_to @post, ->
             textbox '#title', label: 'Title:'
@@ -127,7 +120,7 @@ Just grab [node.js](http://nodejs.org/#download) and [npm](http://github.com/isa
 To get the `coffeecup` command, install it globally:
 
     npm install coffeecup -g
-    
+
 Or to use the latest version:
 
     git clone git@github.com:gradus/coffeecup.git && cd coffeecup
@@ -163,7 +156,7 @@ Defining variables:
 Precompiling to functions:
 
     template = cc.compile(template, locals: yes, hardcode: {zig: 'zag'})
-    
+
     template(foo: 'bar', locals: {ping: 'pong'})
 
 With [express](http://expressjs.com):
@@ -188,7 +181,7 @@ With [zappa](http://github.com/mauricemach/zappa):
 With [meryl](https://github.com/kadirpekel/meryl/tree/master/examples/coffeekup-template):
 
     coffeekup = require 'coffeecup'
-    
+
     meryl.get '/', (req, resp) ->
       people = ['bob', 'alice', 'meryl']
       resp.render 'layout', content: 'index', context: {people: people}
@@ -274,7 +267,7 @@ Please note that even though all examples are given in CoffeeScript, you can als
 - [black-coffee](https://github.com/gradus/black-coffee) - Flatiron and Coffee-Script Template.
 
 - [iron-coffee](https://github.com/twilson63/iron-coffee) - Flatiron and Coffee-Script Template.
- 
+
 - [teacup](https://github.com/goodeggs/teacup) - Descendant that preserves locals in lexical scope.
 
 
